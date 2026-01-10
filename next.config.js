@@ -1,17 +1,18 @@
-const path = require('path')
+const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 🔴 REQUIRED for Netlify static hosting
-  output: 'export',
+  // ⚡ OUTPUT: Remove 'export' to support API routes
+  // output: 'export', // ❌ Remove this line
 
+  // SASS options
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
 
+  // Images config
   images: {
-    // 🔴 REQUIRED for static export
-    unoptimized: true,
+    unoptimized: true, // ⚡ Required for Netlify static hosting to allow external images
 
     remotePatterns: [
       {
@@ -31,6 +32,9 @@ const nextConfig = {
       },
     ],
   },
-}
 
-module.exports = nextConfig
+  // Optional: Enable React Strict Mode (good practice)
+  reactStrictMode: true,
+};
+
+module.exports = nextConfig;
