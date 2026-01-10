@@ -1,10 +1,18 @@
 const path = require('path')
- 
-module.exports = {
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // 🔴 REQUIRED for Netlify static hosting
+  output: 'export',
+
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+
   images: {
+    // 🔴 REQUIRED for static export
+    unoptimized: true,
+
     remotePatterns: [
       {
         protocol: 'https',
@@ -24,3 +32,5 @@ module.exports = {
     ],
   },
 }
+
+module.exports = nextConfig
